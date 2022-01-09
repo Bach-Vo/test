@@ -11,6 +11,32 @@ int main(){
     cin.getline(arr, size, '\n');
     size = strlen(arr);
     */
+
+   //copy cardNum
+   string cardHolder = arr;
+
+   
+   string cardType;
+   switch (arr[0])
+   {
+   case 4:
+       cardType = "Visa";
+       break;
+   case 5:
+       cardType = "MasterCard";
+       break;
+   case 37:
+       cardType = "American Express";
+       break;
+   case 6:
+       cardType = "Discover";
+       break;
+   
+   default:
+       cardType = "Card not recognized...";
+   }
+
+
    int tempSum =0;
    int sum =0;
     for (int i = size-2; i >= 0; i-=2)
@@ -39,8 +65,7 @@ int main(){
     {
         cout << "Card is Valid!";
     }
-    else cout << "Card is InValid...";
-    
+    else cout << "Card is InValid...";   
 }
 //sumE
 //sumO
