@@ -3,9 +3,13 @@
 
 using namespace std;
 
+void cardValidMes(int totalNum, string& cValidMes);
+void cardTypeMes(int typeNum, string &cTypeMes);
+//in parameter string &errMes
+
 int main(){
     int size = 16;
-    char arr[] = "4388576018410707";                                  //checks real list size
+    char arr[] = "4388576018410707";                                  //checks the actual arr size
     /*
     cout << "Enter Card Number: ";
     cin.getline(arr, size, '\n');
@@ -14,27 +18,6 @@ int main(){
 
    //copy cardNum
    string cardHolder = arr;
-
-   
-   string cardType;
-   switch (arr[0])
-   {
-   case 4:
-       cardType = "Visa";
-       break;
-   case 5:
-       cardType = "MasterCard";
-       break;
-   case 37:
-       cardType = "American Express";
-       break;
-   case 6:
-       cardType = "Discover";
-       break;
-   
-   default:
-       cardType = "Card not recognized...";
-   }
 
 
    int tempSum =0;
@@ -47,9 +30,9 @@ int main(){
         if (sum >= 10)
         {
             tempSum = (sum/ 10) + (sum% 10);
-            cout << "temp:" << tempSum << endl;
+            //cout << "temp:" << tempSum << endl;
             arr[i] = tempSum +48;
-            cout << arr[i] << endl;
+            //cout << arr[i] << endl;
         }
         else
             arr[i] = sum +48;
@@ -60,12 +43,42 @@ int main(){
         cout << arr[k] << ", ";
         total += arr[k] -48;
     }
-    cout << "\ntotal:" << total << endl;
-    if (total%10 == 0)
-    {
-        cout << "Card is Valid!";
-    }
-    else cout << "Card is InValid...";   
+    string cValidMes = "";
+    string cTypeMes = "";
+
+    cardValidMes(total, cValidMes);
+    cardTypeMes(cardHolder[0] - 48, cTypeMes);
+
+    cout << "\n\nCard# "<< cardHolder << cValidMes;
+    cout << "\t\t\t\tCard type: " << cTypeMes << endl;
+}
+
+
+void cardValidMes(int totalNum, string &cValidMes){
+    if (totalNum%10 == 0)
+        cValidMes = " is Valid!";
+    else cValidMes = " is InValid...";  
+}
+
+void cardTypeMes(int typeNum, string &cTypeMes){
+   switch (typeNum)
+   {
+   case 4:
+       cTypeMes = "Visa";
+       break;
+   case 5:
+       cTypeMes = "MasterCard";
+       break;
+   case 37:
+       cTypeMes = "American Express";
+       break;
+   case 6:
+       cTypeMes = "Discover";
+       break;
+   default:
+       cTypeMes = "Card not recognized...";
+   }
+   //cardValidMes = "SSSSS";
 }
 //sumE
 //sumO
