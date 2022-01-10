@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+int validator(char array[], int arrSize);
 void cardValidMes(int totalNum, string& cValidMes);
 void cardTypeMes(int typeNum, string &cTypeMes);
 //in parameter string &errMes
@@ -18,31 +20,9 @@ int main(){
 
    //copy cardNum
    string cardHolder = arr;
-
-
-   int tempSum =0;
-   int sum =0;
-    for (int i = size-2; i >= 0; i-=2)
-    {
-        sum = (arr[i] -48) * 2;
-        //cout << '\t' << "arr[i]:" << arr[i] << "\t i:" << i << endl;
-        //cout << "sum:" << sum << '\n';
-        if (sum >= 10)
-        {
-            tempSum = (sum/ 10) + (sum% 10);
-            //cout << "temp:" << tempSum << endl;
-            arr[i] = tempSum +48;
-            //cout << arr[i] << endl;
-        }
-        else
-            arr[i] = sum +48;
-    }
     int total = 0;
-    for (int k = 0; k < size; k++)
-    {
-        cout << arr[k] << ", ";
-        total += arr[k] -48;
-    }
+    total = validator(arr[size], size);
+
     string cValidMes = "";
     string cTypeMes = "";
 
@@ -52,7 +32,32 @@ int main(){
     cout << "\n\nCard# "<< cardHolder << cValidMes;
     cout << "\t\t\t\tCard type: " << cTypeMes << endl;
 }
-
+int validator(char array[], int arrSize){
+    int tempSum =0;
+    int sum =0;
+    for (int i = arrSize-2; i >= 0; i-=2)
+    {
+        sum = (array[i] -48) * 2;
+        //cout << '\t' << "arr[i]:" << arr[i] << "\t i:" << i << endl;
+        //cout << "sum:" << sum << '\n';
+        if (sum >= 10)
+        {
+            tempSum = (sum/ 10) + (sum% 10);
+            //cout << "temp:" << tempSum << endl;
+            array[i] = tempSum +48;
+            //cout << arr[i] << endl;
+        }
+        else
+            array[i] = sum +48;
+    }
+    int tt = 0;
+    for (int k = 0; k < arrSize; k++)
+    {
+        cout << array[k] << " | ";
+        tt += array[k] -48;
+    }
+return tt;
+}
 
 void cardValidMes(int totalNum, string &cValidMes){
     if (totalNum%10 == 0)
@@ -78,7 +83,6 @@ void cardTypeMes(int typeNum, string &cTypeMes){
    default:
        cTypeMes = "Card not recognized...";
    }
-   //cardValidMes = "SSSSS";
 }
 //sumE
 //sumO
@@ -89,7 +93,7 @@ void cardTypeMes(int typeNum, string &cTypeMes){
 
 
 /*
-Method_1 
+Method_1            //doing Me_1 in this program.
 -duplicate card num to a temp arr
 -doub ele and put new ele after doubling directly into the array
 -get total by iterating through the whole arr once
